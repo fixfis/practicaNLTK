@@ -61,4 +61,15 @@ st.pyplot(fig)
 
 
 
+with st.form("prat"):
+    lista = list(set(data["species"]))
+    option = st.selectbox("Seleccione",options=lista)
+    if st.form_submit_button("ver"):
+        data = data[data["species"] == option]
+        st.dataframe(data)
+        fig, ax = plt.subplots(figsize=(18, 5))
+        sns.barplot(data=data, x="bill_length_mm", y="bill_depth_mm")
+        st.pyplot(fig)
+
+
 
